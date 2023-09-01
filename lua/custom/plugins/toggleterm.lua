@@ -12,17 +12,22 @@ return {
 
             function _defaultterm_toggle()
                 defaultTerm:toggle()
+                vim.cmd('startinsert')
             end
+
             function _lazygit_toggle()
                 lazygit:toggle()
+                vim.cmd('startinsert')
             end
 
             function _pythonREPL_toggle()
                 pythonREPL:toggle()
+                vim.cmd('startinsert')
             end
 
             function _haskellREPL_toggle()
                 haskellREPL:toggle()
+                vim.cmd('startinsert')
             end
 
             function toggle_all()

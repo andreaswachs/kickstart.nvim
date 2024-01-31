@@ -35,6 +35,8 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
 
+-- Copilot
+vim.keymap.set("n", "<space>tp", function () require("copilot.panel").open({"right", 0.4}) end, { desc = "Open Copilot panel", noremap = true, silent = true })
 
 -- Neotree
 vim.keymap.set('n', '<space>f', function() vim.cmd.Neotree("toggle") end, { desc = 'Toggle Neotree' })
@@ -148,14 +150,14 @@ return {
         config = function()
             require("copilot").setup({
                 panel = {
-                    enabled = false,
+                    enabled = true,
                     auto_refresh = false,
                     keymap = {
-                        --jump_prev = "[[",
-                        --jump_next = "]]",
-                        --accept = "<CR>",
-                        --refresh = "gr",
-                        --open = "<C-CR>"
+                        jump_prev = "[[",
+                        jump_next = "]]",
+                        accept = "<CR>",
+                        refresh = "gr",
+                        --open = "go"
                     },
                     layout = {
                         position = "right", -- | top | left | right

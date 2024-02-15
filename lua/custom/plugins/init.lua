@@ -35,6 +35,9 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
 
+-- Copilot
+vim.keymap.set("n", "<space>tp", function() require("copilot.panel").open({ "right", 0.4 }) end,
+    { desc = "Open Copilot panel", noremap = true, silent = true })
 
 -- Neotree
 vim.keymap.set('n', '<space>f', function() vim.cmd.Neotree("toggle") end, { desc = 'Toggle Neotree' })
@@ -46,10 +49,10 @@ vim.keymap.set('n', '<C-k>', function() vim.cmd.wincmd("k") end, { desc = 'Termi
 vim.keymap.set('n', '<C-l>', function() vim.cmd.wincmd("l") end, { desc = 'Terminal right window navigation' })
 
 -- Navigate tabs
-vim.keymap.set('n', '<S-h>', function() vim.cmd.tabprevious() end, { desc = 'Move to previous tab'})
-vim.keymap.set('n', '<S-l>', function() vim.cmd.tabnext() end, { desc = 'Move to next tab'})
+vim.keymap.set('n', '<S-h>', function() vim.cmd.tabprevious() end, { desc = 'Move to previous tab' })
+vim.keymap.set('n', '<S-l>', function() vim.cmd.tabnext() end, { desc = 'Move to next tab' })
 vim.keymap.set('n', '<space>tn', function() vim.cmd.tabnew() end, { desc = 'Create new tab' })
-vim.keymap.set('n', '<space>tc', function() vim.cmd.tabclose() end, { desc = 'Close tab'})
+vim.keymap.set('n', '<space>tc', function() vim.cmd.tabclose() end, { desc = 'Close tab' })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -69,7 +72,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Make current file executable
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make current file execuable"})
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make current file execuable" })
 
 local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -82,45 +85,62 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 
 require("tokyonight").setup({
-  -- your configuration comes here
-  -- or leave it empty to use the default settings
-  style = "storm", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-  light_style = "day", -- The theme is used when the background is set to light
-  transparent = false, -- Enable this to disable setting the background color
-  terminal_colors = true, -- Configure the colors used when opening a `:terminal` in [Neovim](https://github.com/neovim/neovim)
-  styles = {
-    -- Style to be applied to different syntax groups
-    -- Value is any valid attr-list value for `:help nvim_set_hl`
-    comments = { italic = true },
-    keywords = { italic = true },
-    functions = {},
-    variables = {},
-    -- Background styles. Can be "dark", "transparent" or "normal"
-    sidebars = "dark", -- style for sidebars, see below
-    floats = "dark", -- style for floating windows
-  },
-  sidebars = { "qf", "help", "terminal" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
-  day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
-  hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
-  dim_inactive = false, -- dims inactive windows
-  lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    style = "storm",        -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+    light_style = "day",    -- The theme is used when the background is set to light
+    transparent = false,    -- Enable this to disable setting the background color
+    terminal_colors = true, -- Configure the colors used when opening a `:terminal` in [Neovim](https://github.com/neovim/neovim)
+    styles = {
+        -- Style to be applied to different syntax groups
+        -- Value is any valid attr-list value for `:help nvim_set_hl`
+        comments = { italic = true },
+        keywords = { italic = true },
+        functions = {},
+        variables = {},
+        -- Background styles. Can be "dark", "transparent" or "normal"
+        sidebars = "dark",                   -- style for sidebars, see below
+        floats = "dark",                     -- style for floating windows
+    },
+    sidebars = { "qf", "help", "terminal" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
+    day_brightness = 0.3,                    -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
+    hide_inactive_statusline = false,        -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
+    dim_inactive = false,                    -- dims inactive windows
+    lualine_bold = false,                    -- When `true`, section headers in the lualine theme will be bold
 
-  --- You can override specific color groups to use other groups or a hex color
-  --- function will be called with a ColorScheme table
-  ---@param colors ColorScheme
-  on_colors = function(colors) end,
+    --- You can override specific color groups to use other groups or a hex color
+    --- function will be called with a ColorScheme table
+    ---@param colors ColorScheme
+    on_colors = function(colors) end,
 
-  --- You can override specific highlights to use other groups or a hex color
-  --- function will be called with a Highlights and ColorScheme table
-  ---@param highlights Highlights
-  ---@param colors ColorScheme
-  on_highlights = function(highlights, colors) end,
+    --- You can override specific highlights to use other groups or a hex color
+    --- function will be called with a Highlights and ColorScheme table
+    ---@param highlights Highlights
+    ---@param colors ColorScheme
+    on_highlights = function(highlights, colors) end,
 })
 
 return {
     {
+        "https://github.com/apple/pkl-neovim",
+        lazy = true,
+        event = "BufReadPre *.pkl",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        build = function()
+            vim.cmd("TSInstall! pkl")
+        end,
+    },
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "VeryLazy",
+        opts = {},
+        config = function(_, opts) require 'lsp_signature'.setup(opts) end
+    },
+    {
         "ray-x/go.nvim",
-        dependencies = {  -- optional packages
+        dependencies = { -- optional packages
             "ray-x/guihua.lua",
             "neovim/nvim-lspconfig",
             "nvim-treesitter/nvim-treesitter",
@@ -128,8 +148,8 @@ return {
         config = function()
             require("go").setup()
         end,
-        event = {"CmdlineEnter"},
-        ft = {"go", 'gomod'},
+        event = { "CmdlineEnter" },
+        ft = { "go", 'gomod' },
         build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
     },
     {
@@ -138,7 +158,7 @@ return {
         event = 'VeryLazy',
         version = '2.*',
         config = function()
-            require'window-picker'.setup()
+            require 'window-picker'.setup()
         end,
     },
     {
@@ -195,7 +215,7 @@ return {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {
-            signs = true, -- show icons in the signs column
+            signs = true,      -- show icons in the signs column
             sign_priority = 8, -- sign priority
             -- keywords recognized as todo comments
             keywords = {
@@ -213,8 +233,8 @@ return {
                 TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
             },
             gui_style = {
-                fg = "NONE", -- The gui style to use for the fg highlight group.
-                bg = "BOLD", -- The gui style to use for the bg highlight group.
+                fg = "NONE",       -- The gui style to use for the fg highlight group.
+                bg = "BOLD",       -- The gui style to use for the bg highlight group.
             },
             merge_keywords = true, -- when true, custom keywords will be merged with the defaults
             -- highlighting of the line containing the todo comment
@@ -222,16 +242,16 @@ return {
             -- * keyword: highlights of the keyword
             -- * after: highlights after the keyword (todo text)
             highlight = {
-                multiline = true, -- enable multine todo comments
-                multiline_pattern = "^.", -- lua pattern to match the next multiline from the start of the matched keyword
-                multiline_context = 10, -- extra lines that will be re-evaluated when changing a line
-                before = "", -- "fg" or "bg" or empty
-                keyword = "wide", -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
-                after = "fg", -- "fg" or "bg" or empty
+                multiline = true,                -- enable multine todo comments
+                multiline_pattern = "^.",        -- lua pattern to match the next multiline from the start of the matched keyword
+                multiline_context = 10,          -- extra lines that will be re-evaluated when changing a line
+                before = "",                     -- "fg" or "bg" or empty
+                keyword = "wide",                -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
+                after = "fg",                    -- "fg" or "bg" or empty
                 pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlighting (vim regex)
-                comments_only = true, -- uses treesitter to match keywords in comments only
-                max_line_len = 400, -- ignore lines longer than this
-                exclude = {}, -- list of file types to exclude highlighting
+                comments_only = true,            -- uses treesitter to match keywords in comments only
+                max_line_len = 400,              -- ignore lines longer than this
+                exclude = {},                    -- list of file types to exclude highlighting
             },
             -- list of named colors where we try to extract the guifg from the
             -- list of highlight groups or use the hex color if hl not found as a fallback
@@ -260,4 +280,3 @@ return {
         }
     }
 }
-

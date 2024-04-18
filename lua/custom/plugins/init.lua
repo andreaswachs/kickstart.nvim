@@ -154,6 +154,9 @@ return {
         config = function(_, opts) require 'lsp_signature'.setup(opts) end
     },
     {
+        "xiyaowong/transparent.nvim",
+    },
+    {
         "ray-x/go.nvim",
         dependencies = { -- optional packages
             "ray-x/guihua.lua",

@@ -5,9 +5,9 @@ return {
         cmd = { "ToggleTerm", "TermExec" },
         config = function()
             local Terminal  = require('toggleterm.terminal').Terminal
-            local defaultTerm = Terminal:new({ cmd = "zsh", hidden = true, direction = "float" })
+            local defaultTerm = Terminal:new({ cmd = "fish", hidden = true, direction = "float" })
             local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
-            local pythonREPL = Terminal:new({ cmd = "python3", hidden = true, direction = "float" })
+            --local pythonREPL = Terminal:new({ cmd = "python3", hidden = true, direction = "float" })
             local haskellREPL = Terminal:new({ cmd = "ghci", hidden = true, direction = "float" })
 
             function _defaultterm_toggle()
@@ -21,7 +21,7 @@ return {
             end
 
             function _pythonREPL_toggle()
-                pythonREPL:toggle()
+                --pythonREPL:toggle()
                 vim.cmd('startinsert')
             end
 
@@ -37,9 +37,9 @@ return {
                 if lazygit:is_open() then
                     lazygit:toggle()
                 end
-                if pythonREPL:is_open() then
-                    pythonREPL:toggle()
-                end
+                --if pythonREPL:is_open() then
+                --    pythonREPL:toggle()
+                --end
                 if haskellREPL:is_open() then
                     haskellREPL:toggle()
                 end
@@ -48,7 +48,7 @@ return {
             vim.keymap.set('n', '<space>tt', "<cmd>lua _defaultterm_toggle()<CR>", { desc = 'Toggle Lazygit', noremap = true, silent = true })
             vim.keymap.set('n', '<F7>', "<cmd>lua _defaultterm_toggle()<CR>", { desc = 'Toggle Lazygit', noremap = true, silent = true })
             vim.keymap.set('n', '<space>tl', "<cmd>lua _lazygit_toggle()<CR>", { desc = 'Toggle Lazygit', noremap = true, silent = true })
-            vim.keymap.set('n', '<space>tp', "<cmd>lua _pythonREPL_toggle()<CR>", { desc = 'Toggle Python3 REPL', noremap = true, silent = true })
+            --vim.keymap.set('n', '<space>tp', "<cmd>lua _pythonREPL_toggle()<CR>", { desc = 'Toggle Python3 REPL', noremap = true, silent = true })
             vim.keymap.set('n', '<space>th', "<cmd>lua _haskellREPL_toggle()<CR>", { desc = 'Toggle GHCI', noremap = true, silent = true })
 
             vim.keymap.set('t', '<C-l>', '<cmd>lua toggle_all()<CR>', { desc = 'Toggle all visible terminals' })
